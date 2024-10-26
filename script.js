@@ -31,6 +31,7 @@ document.addEventListener('keydown', function (e) {
   }
 });
 
+/*
 console.log(document.documentElement); // The <html> element
 console.log(document.head); // The <head> element
 console.log(document.body); // The <body> element
@@ -67,3 +68,83 @@ document
   .addEventListener('click', function () {
     message.remove();
   });
+
+document.documentElement.style.setProperty('--color-primary', 'red');
+
+//attributes
+const logo = document.querySelector('.nav__logo');
+console.log(logo.alt);
+console.log(logo.className);
+console.log(logo.src);
+
+logo.alt = 'Beautiful minimalist logo';
+
+//Non-Standard
+console.log(logo.designer);
+
+console.log(logo.getAttribute('designer'));
+
+logo.setAttribute('company', 'Bankist');
+logo.setAttribute('alt', 'Company logo');
+
+console.log(logo.getAttribute('src'));
+console.log(logo.src);
+console.log(logo.getAttribute('alt'));
+console.log(logo.designer);
+
+const link = document.querySelector('.twitter-link');
+console.log(link.href);
+
+//Data Attributes
+console.log(logo.dataset.versionNumber);
+
+//Classes
+logo.classList.add('c', 'j');
+logo.classList.remove('j');
+logo.classList.toggle('j');
+logo.classList.contains('j');*/
+
+const btnScrollTo = document.querySelector('.btn--scroll-to');
+const section1 = document.querySelector('#section--1');
+
+btnScrollTo.addEventListener('click', function (e) {
+  const s1coords = section1.getBoundingClientRect();
+  console.log(s1coords);
+
+  console.log(e.target.getBoundingClientRect());
+
+  console.log('Current scroll (X/Y', window.pageXOffset, window.pageYOffset); // Current scroll position (X/Y)
+
+  console.log(
+    'Height/Width viewport',
+    document.documentElement.clientHeight,
+    document.documentElement.clientWidth
+  );
+
+  //scrolling
+  // window.scrollTo(
+  //   s1coords.left + window.pageXOffset,
+  //   s1coords.top + window.pageXOffset
+  // );
+
+  /*  window.scrollTo({
+    left: s1coords.left + window.scrollX, // use scrollX instead of pageXOffset
+    top: s1coords.top + window.scrollY, // use scrollY instead of pageYOffset
+    behavior: 'smooth',
+  }); */
+
+  //Modern way and premium way
+  section1.scrollIntoView({ behavior: 'smooth' });
+});
+
+const h1 = document.querySelector('h1');
+const alertH1 = function (e) {
+  alert('addEventListener: Great! You are reading the heading :D');
+  h1.removeEventListener('mouseenter', alertH1);
+};
+h1.addEventListener('mouseenter', alertH1);
+
+//Old school way
+// h1.onmouseenter = function (e) {
+//   alert('onmouseEnter: Great! You are reading the heading :D');
+// };
