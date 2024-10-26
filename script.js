@@ -22,7 +22,6 @@ btnsOpenModal.forEach(function (btn) {
   btn.addEventListener('click', openModal);
 });
 
-
 btnCloseModal.addEventListener('click', closeModal);
 overlay.addEventListener('click', closeModal);
 
@@ -31,3 +30,21 @@ document.addEventListener('keydown', function (e) {
     closeModal();
   }
 });
+
+console.log(document.documentElement); // The <html> element
+console.log(document.head); // The <head> element
+console.log(document.body); // The <body> element
+
+document.querySelector('.header'); // The <header> element
+const allSections = document.querySelectorAll('.section'); // NodeList(4) [section#section--1, section#section--2, section#section--3, section#section--4]
+console.log(allSections);
+
+document.getElementById('section--1');
+const allButtons = document.getElementsByTagName('button');
+console.log(allButtons);
+
+//creating and inserting elements
+// document.querySelector('.header').insertAdjacentHTML('afterend', '<h2>Test</h2>');
+
+
+
