@@ -34,17 +34,17 @@ document.addEventListener('keydown', function (e) {
 //Scrolling section
 btnScrollTo.addEventListener('click', function (e) {
   const s1coords = section1.getBoundingClientRect();
-  console.log(s1coords);
+  // console.log(s1coords);
 
-  console.log(e.target.getBoundingClientRect());
+  // console.log(e.target.getBoundingClientRect());
 
-  console.log('Current scroll (X/Y', window.scrollX, window.scrollY); // Current scroll position (X/Y)
+  // console.log('Current scroll (X/Y', window.scrollX, window.scrollY); // Current scroll position (X/Y)
 
-  console.log(
-    'Height/Width viewport',
-    document.documentElement.clientHeight,
-    document.documentElement.clientWidth
-  );
+  // console.log(
+  //   'Height/Width viewport',
+  //   document.documentElement.clientHeight,
+  //   document.documentElement.clientWidth
+  // );
 
   //scrolling
   /*   window.scrollTo(
@@ -80,7 +80,7 @@ document.querySelector('.nav__links').addEventListener('click', function (e) {
   //Matching strategy
   if (e.target.classList.contains('nav__link')) {
     const id = e.target.getAttribute('href');
-    console.log(id);
+    // console.log(id);
     document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
   }
 });
@@ -93,7 +93,7 @@ const tabsContent = document.querySelectorAll('.operations__content');
 // tabs.forEach(t => t.addEventListener('click', () => console.log('TAB ')));
 tabsContainer.addEventListener('click', function (e) {
   const clicked = e.target.closest('.operations__tab');
-  console.log(clicked);
+  // console.log(clicked);
 
   //Guard clause
   if (!clicked) return;
@@ -129,6 +129,39 @@ const handleHover = function (e) {
 
 nav.addEventListener('mouseover', handleHover.bind(0.5));
 nav.addEventListener('mouseout', handleHover.bind(1));
+
+//Sticky navigation
+/* const obsCallback = function (entries, observer) {
+  entries.forEach(entry => {
+    console.log(entry);
+  });
+};
+
+const obsOptions = {
+  root: null,
+  threshold: [0, 0.20],
+};
+
+const observer = new IntersectionObserver(obsCallback, obsOptions);
+observer.observe(section1);
+ */
+const header = document.querySelector('.header');
+const navHeight = nav.getBoundingClientRect().height;
+// console.log(navHeight);
+
+const stickyNav = function (entries) {
+  const [entry] = entries;
+  // console.log(entry);
+  if (!entry.isIntersecting) nav.classList.add('sticky');
+  else nav.classList.remove('sticky');
+};
+
+const headerObserver = new IntersectionObserver(stickyNav, {
+  root: null,
+  threshold: 0,
+  rootMargin: `-{navHeight}px`,
+});
+headerObserver.observe(header);
 
 /*console.log(document.documentElement); // The <html> element
 console.log(document.head); // The <head> element
@@ -249,17 +282,17 @@ document.querySelector('.nav').addEventListener('click', function (e) {
 
 const h1 = document.querySelector('h1');
 
-//Going downwards: child
+/* //Going downwards: child
 console.log(h1.querySelectorAll('.highlight'));
 console.log(h1.childNodes);
 console.log(h1.children);
-
+ */
 h1.firstElementChild.style.color = 'orange';
 h1.lastElementChild.style.color = 'teal';
-
+/* 
 // Going upwards: Selecting Parent
 console.log(h1.parentNode);
-console.log(h1.parentElement);
+console.log(h1.parentElement); */
 
 // h1.closest('.header').style.background = 'var(--gradient-secondary)';
 
@@ -267,15 +300,15 @@ h1.closest('h1').style.background = 'var(--gradient-primary)';
 h1.closest('h1').style.padding = '30px';
 h1.closest('h1').style.borderRadius = '40px';
 
-//Going sideways: siblings
+/* //Going sideways: siblings
 console.log(h1.previousElementSibling);
 console.log(h1.nextElementSibling);
 
 console.log(h1.previousSibling);
-console.log(h1.nextSibling);
+console.log(h1.nextSibling); */
 
 //Get all the siblings
-console.log(h1.parentElement.children);
+// console.log(h1.parentElement.children);/
 [...h1.parentElement.children].forEach(function (el) {
   // if (el !== h1) el.style.transform = 'scale(0.5)';
 });
