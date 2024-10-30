@@ -182,7 +182,7 @@ const headerObserver = new IntersectionObserver(stickyNav, {
 });
 headerObserver.observe(header);
 
-// Reveal sections
+/* // Reveal sections
 const allSections = document.querySelectorAll('.section');
 
 const revealSection = function (entries, observer) {
@@ -203,6 +203,41 @@ allSections.forEach(function (section) {
   sectionObserve.observe(section);
   section.classList.add('section--hidden');
 });
+ */
+const allSections = document.querySelectorAll('.section');
+
+const revealSection = (entries, observer) => {
+  const [entry] = entries;
+
+  if (!entry.isIntersecting) return;
+  entry.target.classList.remove('section--hidden');
+  observer.unobserve(entry.target);
+};
+
+const sectionObserve = new IntersectionObserver(revealSection, {
+  root: null,
+  threshold: 0.15,
+});
+
+allSections.forEach(function (section) {
+  sectionObserve.observe(section);
+  section.classList.add('section--hidden');
+});
+
+//Lazy loading images
+const imgTargets = document.querySelectorAll('img[data-src]');
+
+const loading = function (entries, observer) {
+  const [entry] = entries;
+  console.log(entry);
+};
+
+const imgObserver = new IntersectionObserver(loading, {
+  root: null,
+  threshold: 0,
+});
+
+imgTargets.forEach(img => imgObserver.observe(img));
 
 /*console.log(document.documentElement); // The <html> element
 console.log(document.head); // The <head> element
