@@ -251,6 +251,7 @@ const imgObserver = new IntersectionObserver(loading, {
 imgTargets.forEach(img => imgObserver.observe(img));
 
 //Slider
+const slider = function(){
 const slides = document.querySelectorAll('.slide');
 const btnLeft = document.querySelector('.slider__btn--left');
 const btnRight = document.querySelector('.slider__btn--right');
@@ -261,6 +262,7 @@ const maxSlide = slides.length;
 
 // slides.forEach((s, i) => (s.style.transform = `translateX(${100 * i}%)`));
 
+//Functions
 const createDots = function () {
   slides.forEach(function (_, i) {
     dotContainer.insertAdjacentHTML(
@@ -269,7 +271,17 @@ const createDots = function () {
     );
   });
 };
-createDots();
+
+const activateDot = function (slide) {
+  document
+    .querySelectorAll('.dots__dot')
+    .forEach(dot => dot.classList.remove('dots__dot--active'));
+
+  document
+    .querySelector(`.dots__dot[data-slide="${slide}"]`)
+    .classList.add('dots__dot--active');
+};
+
 //Logic will - current slide =1 : -100%, 0%, 100%, 200%
 const goToSlide = function (slide) {
   slides.forEach(
@@ -278,8 +290,12 @@ const goToSlide = function (slide) {
 };
 
 //initial slide
-goToSlide(0);
-
+const init = function () {
+  goToSlide(0);
+  createDots();
+  activateDot(0);
+};
+init();
 //Next slide
 const nextSlide = function () {
   if (curSlide === maxSlide - 1) {
@@ -287,7 +303,9 @@ const nextSlide = function () {
   } else {
     curSlide++;
   }
+
   goToSlide(curSlide);
+  activateDot(curSlide);
 };
 
 const prevSlide = function () {
@@ -297,7 +315,9 @@ const prevSlide = function () {
     curSlide--;
   }
   goToSlide(curSlide);
+  activateDot(curSlide);
 };
+
 btnRight.addEventListener('click', nextSlide);
 btnLeft.addEventListener('click', prevSlide);
 
@@ -308,11 +328,13 @@ document.addEventListener('keydown', function (e) {
 
 dotContainer.addEventListener('click', function (e) {
   if (e.target.classList.contains('dots__dot')) {
-    const {slide} = e.target.dataset;
+    const { slide } = e.target.dataset;
     goToSlide(slide);
+    activateDot(slide);
   }
 });
-
+}
+slider()
 /*console.log(document.documentElement); // The <html> element
 console.log(document.head); // The <head> element
 console.log(document.body); // The <body> element
