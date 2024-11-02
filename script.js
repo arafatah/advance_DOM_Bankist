@@ -252,6 +252,7 @@ const imgObserver = new IntersectionObserver(loading, {
 imgTargets.forEach(img => imgObserver.observe(img));
 
 //Slider
+/////////////////////////////////
 const slider = function () {
   const slides = document.querySelectorAll('.slide');
   const btnLeft = document.querySelector('.slider__btn--left');
@@ -264,6 +265,12 @@ const slider = function () {
   // slides.forEach((s, i) => (s.style.transform = `translateX(${100 * i}%)`));
 
   //Functions
+  const goToSlide = function (slide) {
+    slides.forEach(
+      (s, i) => (s.style.transform = `translateX(${100 * (i - slide)}%)`)
+    );
+  };
+
   const createDots = function () {
     slides.forEach(function (_, i) {
       dotContainer.insertAdjacentHTML(
@@ -284,11 +291,6 @@ const slider = function () {
   };
 
   //Logic will - current slide = 1 : -100%, 0%, 100%, 200%
-  const goToSlide = function (slide) {
-    slides.forEach(
-      (s, i) => (s.style.transform = `translateX(${100 * (i - slide)}%)`)
-    );
-  };
 
   //initial slide
   const init = function () {
@@ -520,3 +522,18 @@ tabsContainer.addEventListener('click', function (e) {
     .classList.add('operations__content--active');
 });
  */
+
+document.addEventListener('DOMContentLoaded', function (e) {
+  console.log('HTML parsed and DOM tree built', e);
+});
+
+window.addEventListener('load', function (e) {
+  console.log('Page fully load', e);
+});
+
+window.addEventListener('beforeunload', function (e) {
+  e.preventDefault();
+  console.log('Hello', e);
+  e.returnValue = '';
+  //returnValue is not supported anymore.
+});
