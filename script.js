@@ -93,7 +93,7 @@ btnScrollTo.addEventListener('click', function (e) {
 
   // console.log(e.target.getBoundingClientRect());
 
-  // console.log('Current scroll (X/Y', window.scrollX, window.scrollY); // Current scroll position (X/Y)
+  // console.log('Current scroll (X/Y)', window.scrollX, window.scrollY); // Current scroll position (X/Y)
 
   // console.log(
   //   'Height/Width viewport',
@@ -101,13 +101,13 @@ btnScrollTo.addEventListener('click', function (e) {
   //   document.documentElement.clientWidth
   // );
 
-  //scrolling
+  //scrolling - Have to use scrollX and scrollY for current scroll position
   /*   window.scrollTo(
-    s1coords.left + window.pageXOffset,
-    s1coords.top + window.pageXOffset
+    s1coords.left + window.scrollX,
+    s1coords.top  + window.scrollY
   ); */
 
-  /*  window.scrollTo({
+  /* window.scrollTo({
     left: s1coords.left + window.scrollX, // use scrollX instead of pageXOffset
     top: s1coords.top + window.scrollY, // use scrollY instead of pageYOffset
     behavior: 'smooth',
@@ -115,6 +115,30 @@ btnScrollTo.addEventListener('click', function (e) {
 
   //Modern way and premium way
   section1.scrollIntoView({ behavior: 'smooth' });
+});
+
+// rgb(255, 255, 255)
+const randomInt = (min, max) =>
+  Math.floor(Math.random() * (max - min + 1) + min);
+
+const randomColor = () =>
+  `rgb(${randomInt(0, 255)},${randomInt(0, 255)},${randomInt(0, 255)})`;
+console.log(randomColor());
+
+document.querySelector('.nav__link').addEventListener('click', function (e) {
+  e.preventDefault();
+  this.style.backgroundColor = randomColor();
+  console.log('Link', e.target);
+});
+document.querySelector('.nav__links').addEventListener('click', function (e) {
+  e.preventDefault();
+  this.style.backgroundColor = randomColor();
+  console.log('CONTAINER', e.target);
+});
+document.querySelector('.nav').addEventListener('click', function (e) {
+  e.preventDefault();
+  this.style.backgroundColor = randomColor();
+  console.log('NAV', e.target);
 });
 
 ///////////////////////////////////////
