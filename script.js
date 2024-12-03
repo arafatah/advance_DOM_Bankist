@@ -81,6 +81,9 @@ document
   console.log(getComputedStyle(message).height);
   
   message.style.height = Number.parseFloat(getComputedStyle(message).height, 10) + 40 + 'px'
+
+  document.documentElement.style.setProperty(
+    '--color-primary','orangered')
  */
 
 // Scrolling section
@@ -443,7 +446,7 @@ document
 
 document.documentElement.style.setProperty('--color-primary', 'red');
 
-//attributes
+//attributes - we can change this. 
 const logo = document.querySelector('.nav__logo');
 console.log(logo.alt);
 console.log(logo.className);
@@ -474,7 +477,12 @@ console.log(logo.dataset.versionNumber);
 logo.classList.add('c', 'j');
 logo.classList.remove('j');
 logo.classList.toggle('j');
-logo.classList.contains('j');*/
+logo.classList.contains('j');
+
+//Don't use this way
+logo.className = 'jonas';
+
+*/
 /* 
 const h1 = document.querySelector('h1');
 const alertH1 = function (e) {
