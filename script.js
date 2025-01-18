@@ -91,15 +91,15 @@ btnScrollTo.addEventListener('click', function (e) {
   const s1coords = section1.getBoundingClientRect();
   // console.log(s1coords);
 
-  // console.log(e.target.getBoundingClientRect());
+  //  console.log(e.target.getBoundingClientRect());
 
-  // console.log('Current scroll (X/Y)', window.scrollX, window.scrollY); // Current scroll position (X/Y)
+  //  console.log('Current scroll (X/Y)', window.scrollX, window.scrollY); // Current scroll position (X/Y)
 
-  // console.log(
-  //   'Height/Width viewport',
-  //   document.documentElement.clientHeight,
-  //   document.documentElement.clientWidth
-  // );
+  /*  console.log(
+    'Height/Width viewport',
+    document.documentElement.clientHeight,
+    document.documentElement.clientWidth
+  ); */
 
   //scrolling - Have to use scrollX and scrollY for current scroll position
   /*   window.scrollTo(
@@ -110,6 +110,12 @@ btnScrollTo.addEventListener('click', function (e) {
   /* window.scrollTo({
     left: s1coords.left + window.scrollX, // use scrollX instead of pageXOffset
     top: s1coords.top + window.scrollY, // use scrollY instead of pageYOffset
+    behavior: 'smooth',
+  }); */
+
+  /* window.scrollTo({
+    left: s1coords.left + window.scrollX,
+    top: s1coords.top + window.scrollY,
     behavior: 'smooth',
   }); */
 
@@ -646,3 +652,9 @@ message.style.height =
   Number.parseFloat(getComputedStyle(message).height, 10) + 40 + 'px';
 
 // document.documentElement.style.setProperty('--color-primary', 'orangered');
+
+// Attributes
+const logo = document.querySelector('.nav__logo');
+// logo.setAttribute('alt', 'New Name of logo');
+logo.alt = 'New logo new logo';
+console.log(logo.alt);
