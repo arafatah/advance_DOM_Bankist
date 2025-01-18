@@ -19,7 +19,7 @@ const closeModal = function () {
   overlay.classList.add('hidden');
 };
 
-btnsOpenModal.forEach(function (btn) {
+btnsOpenModal.forEach(btn => {
   btn.addEventListener('click', openModal);
 });
 
@@ -153,7 +153,7 @@ document.querySelector('.nav').addEventListener('click', function (e) {
   });
 }); */
 
-//1. Add event listener to common parent element 
+//1. Add event listener to common parent element
 //2. Determine what element originated the event
 document.querySelector('.nav__links').addEventListener('click', function (e) {
   e.preventDefault();
@@ -622,3 +622,27 @@ window.addEventListener('beforeunload', function (e) {
   e.returnValue = '';
   //returnValue is not supported anymore.
 });
+
+///////---------------
+
+const message = document.createElement('div');
+message.classList.add('cookie-message');
+message.innerHTML = `
+  We use cookies for improved functionality and analytics.
+  <button class="btn btn--close-cookie">Got it!</button>
+`;
+
+message.style.backgroundColor = '#37383d';
+message.style.width = '120%';
+
+console.log(message.style.color);
+console.log(message.style.backgroundColor);
+
+// Real style
+console.log(getComputedStyle(message).color);
+console.log(getComputedStyle(message).height);
+
+message.style.height =
+  Number.parseFloat(getComputedStyle(message).height, 10) + 40 + 'px';
+
+// document.documentElement.style.setProperty('--color-primary', 'orangered');
