@@ -144,6 +144,7 @@ document.querySelector('.nav').addEventListener('click', function (e) {
 ///////////////////////////////////////
 // Page Navigation
 
+// Event delegation
 /* document.querySelectorAll('.nav__link').forEach(function (el) {
   el.addEventListener('click', function (e) {
     e.preventDefault();
@@ -152,7 +153,7 @@ document.querySelector('.nav').addEventListener('click', function (e) {
   });
 }); */
 
-//1. Add event listener to common parent element
+//1. Add event listener to common parent element 
 //2. Determine what element originated the event
 document.querySelector('.nav__links').addEventListener('click', function (e) {
   e.preventDefault();
