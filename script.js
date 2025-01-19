@@ -134,6 +134,7 @@ console.log(randomColor());
 document.querySelector('.nav__link').addEventListener('click', function (e) {
   e.preventDefault();
   this.style.backgroundColor = randomColor();
+
   console.log('Link', e.target);
 });
 document.querySelector('.nav__links').addEventListener('click', function (e) {
@@ -149,7 +150,6 @@ document.querySelector('.nav').addEventListener('click', function (e) {
 
 ///////////////////////////////////////
 // Page Navigation
-
 // Event delegation
 /* document.querySelectorAll('.nav__link').forEach(function (el) {
   el.addEventListener('click', function (e) {
@@ -171,7 +171,7 @@ document.querySelector('.nav__links').addEventListener('click', function (e) {
   }
 });
 
-//Tabbed components
+// Tabbed components
 const tabs = document.querySelectorAll('.operations__tab');
 const tabsContainer = document.querySelector('.operations__tab-container');
 const tabsContent = document.querySelectorAll('.operations__content');
@@ -181,17 +181,17 @@ tabsContainer.addEventListener('click', function (e) {
   const clicked = e.target.closest('.operations__tab');
   // console.log(clicked);
 
-  //Guard clause
+  // Guard clause
   if (!clicked) return;
 
-  //Remove classes
+  // Remove classes
   tabs.forEach(t => t.classList.remove('operations__tab--active'));
   tabsContent.forEach(c => c.classList.remove('operations__content--active'));
 
-  //Active tab
+  // Active tab
   clicked.classList.add('operations__tab--active');
 
-  //Activate content area
+  // Activate content area
   document
     .querySelector(`.operations__content--${clicked.dataset.tab}`)
     .classList.add('operations__content--active');
@@ -658,3 +658,10 @@ const logo = document.querySelector('.nav__logo');
 // logo.setAttribute('alt', 'New Name of logo');
 logo.alt = 'New logo new logo';
 console.log(logo.alt);
+
+const randomInt1 = (min, max) =>
+  Math.floor(Math.random() * (max - min + 1) + min);
+
+const randomColor2 = () =>
+  `rgb(${randomInt1(0, 255)}, ${randomInt1(0, 255)},${randomInt1(0, 255)})`;
+console.log(randomColor2());
