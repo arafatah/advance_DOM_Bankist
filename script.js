@@ -220,13 +220,13 @@ const handleHover = function (e) {
 nav.addEventListener('mouseover', handleHover.bind(0.5));
 nav.addEventListener('mouseout', handleHover.bind(1));
 
-// With scroll even, it will fire always when it's a small scroll. this will be not good for the user.
+/* // With scroll even, it will fire always when it's a small scroll. this will be not good for the user.
 const initialCoords = section1.getBoundingClientRect();
 
 window.addEventListener('scroll', function () {
   console.log(window.scrollY);
   if (window.screenY > initialCoords.top) nav.classList.toggle('sticky');
-});
+}); */
 
 // Sticky navigation
 /* const obsCallback = function (entries, observer) {
@@ -262,6 +262,22 @@ const headerObserver = new IntersectionObserver(stickyNav, {
 // console.log(headerObserver);
 headerObserver.observe(header);
  */
+/* const obsCallback2 = (entries, observer) => {
+  entries.forEach(entry => {
+    console.log(entry);
+  });
+};
+
+const obsOptions2 = {
+  root: null,
+  threshold: 0.1,
+};
+
+const observer = new IntersectionObserver(obsCallback2, obsOptions2);
+observer.observe(section1);
+
+ */
+
 
 const header = document.querySelector('.header');
 const navHeight = nav.getBoundingClientRect().height;
