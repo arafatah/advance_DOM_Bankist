@@ -137,11 +137,13 @@ document.querySelector('.nav__link').addEventListener('click', function (e) {
 
   console.log('Link', e.target);
 });
+
 document.querySelector('.nav__links').addEventListener('click', function (e) {
   e.preventDefault();
   this.style.backgroundColor = randomColor();
   console.log('CONTAINER', e.target);
 });
+
 document.querySelector('.nav').addEventListener('click', function (e) {
   e.preventDefault();
   this.style.backgroundColor = randomColor();
@@ -150,7 +152,7 @@ document.querySelector('.nav').addEventListener('click', function (e) {
 
 ///////////////////////////////////////
 // Page Navigation
-// Event delegation
+// // **** Event delegation 
 /* document.querySelectorAll('.nav__link').forEach(function (el) {
   el.addEventListener('click', function (e) {
     e.preventDefault();
@@ -160,10 +162,10 @@ document.querySelector('.nav').addEventListener('click', function (e) {
 }); */
 
 //1. Add event listener to common parent element
-//2. Determine what element originated the event
+//2. Determine what element originated the event - where the event actually created. 
 document.querySelector('.nav__links').addEventListener('click', function (e) {
   e.preventDefault();
-  //Matching strategy
+  // Matching strategy
   if (e.target.classList.contains('nav__link')) {
     const id = e.target.getAttribute('href');
     // console.log(id);
@@ -587,7 +589,7 @@ console.log(h1.nextElementSibling);
 console.log(h1.previousSibling);
 console.log(h1.nextSibling); */
 
-//Get all the siblings
+// Get all the siblings
 // console.log(h1.parentElement.children);/
 [...h1.parentElement.children].forEach(function (el) {
   // if (el !== h1) el.style.transform = 'scale(0.5)';
