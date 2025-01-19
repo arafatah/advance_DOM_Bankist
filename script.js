@@ -152,7 +152,7 @@ document.querySelector('.nav').addEventListener('click', function (e) {
 
 ///////////////////////////////////////
 // Page Navigation
-// // **** Event delegation 
+// // **** Event delegation
 /* document.querySelectorAll('.nav__link').forEach(function (el) {
   el.addEventListener('click', function (e) {
     e.preventDefault();
@@ -162,7 +162,7 @@ document.querySelector('.nav').addEventListener('click', function (e) {
 }); */
 
 //1. Add event listener to common parent element
-//2. Determine what element originated the event - where the event actually created. 
+//2. Determine what element originated the event - where the event actually created.
 document.querySelector('.nav__links').addEventListener('click', function (e) {
   e.preventDefault();
   // Matching strategy
@@ -201,10 +201,11 @@ tabsContainer.addEventListener('click', function (e) {
 
 const nav = document.querySelector('.nav');
 
-//Menu fade animation
+// Menu fade animation
 const handleHover = function (e) {
   if (e.target.classList.contains('nav__link')) {
     const link = e.target;
+
     const siblings = link.closest('.nav').querySelectorAll('.nav__link');
     const logo = link.closest('.nav').querySelector('img');
 
@@ -215,10 +216,19 @@ const handleHover = function (e) {
   }
 };
 
+// it will work with callback function also. This is not good way.
 nav.addEventListener('mouseover', handleHover.bind(0.5));
 nav.addEventListener('mouseout', handleHover.bind(1));
 
-//Sticky navigation
+// With scroll even, it will fire always when it's a small scroll. this will be not good for the user.
+const initialCoords = section1.getBoundingClientRect();
+
+window.addEventListener('scroll', function () {
+  console.log(window.scrollY);
+  if (window.screenY > initialCoords.top) nav.classList.toggle('sticky');
+});
+
+// Sticky navigation
 /* const obsCallback = function (entries, observer) {
   entries.forEach(entry => {
     console.log(entry);
@@ -605,7 +615,7 @@ tabsContainer.addEventListener('click', function (e) {
 
   //Guard clause
   if (!clicked) return;
-
+ 
   tabs.forEach(t => t.classList.remove('operations__tab--active'));
   clicked.classList.add('operations__tab--active');
   tabsContent.forEach(c => c.classList.remove('operations__content--active'));
