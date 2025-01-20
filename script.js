@@ -292,6 +292,7 @@ const stickyNav = function (entries) {
 const headerObserver = new IntersectionObserver(stickyNav, {
   root: null,
   threshold: 0,
+  // It should be on px. 
   rootMargin: `-${navHeight}px`,
 });
 headerObserver.observe(header);
