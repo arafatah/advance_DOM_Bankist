@@ -448,9 +448,12 @@ const slider = function () {
 
   dotContainer.addEventListener('click', function (e) {
     if (e.target.classList.contains('dots__dot')) {
-      const { slide } = e.target.dataset;
-      goToSlide(slide);
-      activateDot(slide);
+      // const { slide } = e.target.dataset;
+      // goToSlide(slide);
+      // activateDot(slide);
+      curSlide = Number(e.target.dataset.slide);
+      goToSlide(curSlide);
+      activateDot(curSlide);
     }
   });
 };
